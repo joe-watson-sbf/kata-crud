@@ -1,2 +1,27 @@
-package com.sofkau.todocrud.domain;public class TodoService {
+package com.sofkau.todocrud.domain;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class TodoService {
+
+    @Autowired
+    private TodoRepository repository;
+
+    public Iterable<Todo> list(){
+        return repository.findAll();
+    }
+
+    public Todo save(Todo todo){
+        return repository.save(todo);
+    }
+
+    public void deleteById(Long id){
+        repository.deleteById(id);
+    }
+
+    public Todo getById(Long id){
+        return repository.findById(id).orElseThrow();
+    }
 }
